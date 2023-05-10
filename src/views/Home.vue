@@ -4,7 +4,7 @@
 
     <!-- //! about -->
     <div class="my-7 border-t border-gray-200">
-        <MiddleHeader header="About us" subheader="about our trainers" class="mb-12" />
+        <MiddleHeader header="About us" subheader="about our training center" class="mb-12" />
         <div class="w-full px-8 sm:px-24 flex flex-col lg:flex-row">
             <div class="w-full lg:w-1/2 px-8 py-12 lg:py-8 bg-white shadow flex flex-col justify-around">
                 <div class="text-center lg:text-left">

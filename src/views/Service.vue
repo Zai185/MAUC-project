@@ -31,9 +31,9 @@
                 class="w-full flex flex-col lg:flex-row mb-8 shadow rounded overflow-hidden">
                 <img src="../images/building.jpg" alt="" class="w-full lg:w-1/2 h-[300px] object-cover "
                     :class="[index % 2 == 0 ? 'lg:order-2' : '']">
-                <div class="w-full lg:w-1/2 px-8 py-7 lg:py-2 bg-white shadow flex flex-col justify-around">
+                <div class="w-full lg:w-1/2 px-2 sm:px-8 py-7 lg:py-2 bg-white shadow flex flex-col">
                     <div class="text-center lg:text-left">
-                        <h1 class="text-4xl sm:text-3xl font-bold lg:block mb-4 lg:mb-8">{{ service.name }}</h1>
+                        <h1 class="text-3xl sm:text-4xl font-bold lg:block mb-4 lg:mb-8">{{ service.name }}</h1>
                         <p class="text-lg text-justify mb-4">{{ service.description }}</p>
                         <ul class="flex flex-wrap">
                             <li v-for="(outline) in service.outlines" :key="`${service}_${outline}`"
@@ -57,8 +57,9 @@
             </div>
         </div>
         <!-- //! copyright -->
-        <div class="w-full bg-red-900 text-white text-center py-1">@copyright 2023 - All rights preserved to Mauc Training
-            Center</div>
+        <div class="w-full bg-red-900 text-white text-center py-1">
+            @copyright 2023 - All rights preserved to Mauc Training Center
+        </div>
     </div>
 </template>
 
@@ -66,8 +67,8 @@
 import MiddleHeader from '../components/MiddleHeader.vue';
 
 const services = [
-    { name: 'Landscape Project', description: "In this service, experienced professionals provide comprehensive landscape construction solutions from site preparation to installation, ensuring high-quality results that meet the client's needs and preferences.", outlines: ['outline one', 'outline two', 'outline three'] },
-    { name: 'Public Building Services', description: "In this service, skilled professionals offer design and construction solutions for public buildings such as schools, libraries, and government facilities. Projects are delivered on time and within budget with a focus on sustainability and accessibility.", outlines: ['outline one', 'outline two', 'outline three', 'outline four', 'outline five'] },
+    { name: 'Landscape Project', description: "In this service, experienced professionals provide comprehensive landscape construction solutions from site preparation to installation, ensuring high-quality results that meet the client's needs and preferences.", outlines: ['outline one', 'outline two'] },
+    { name: 'Public Building Services', description: "In this service, skilled professionals offer design and construction solutions for public buildings such as schools, libraries, and government facilities. Projects are delivered on time and within budget with a focus on sustainability and accessibility.", outlines: ['outline one'] },
     { name: 'Residential Service', description: "In this service, homeowners can expect personalized attention and tailored solutions for their home improvement needs, including renovations, repairs, and maintenance. Experienced professionals ensure quality workmanship and customer satisfaction.", outlines: ['outline one', 'outline two'] }
 ]
 

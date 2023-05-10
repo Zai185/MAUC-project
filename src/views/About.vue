@@ -52,7 +52,7 @@
                     <img src="../images/building.jpg" alt="" class="w-full lg:w-1/2 h-[370px] object-cover lg:order-1">
                     <div class="w-full lg:w-1/2 px-8 py-12 lg:py-8 bg-white shadow flex flex-col justify-around">
                         <div class="text-center lg:text-left">
-                            <h1 class="text-4xl sm:text-4xl font-bold lg:block mb-8">About Our Trainers</h1>
+                            <h1 class="text-3xl sm:text-4xl font-bold lg:block mb-8">About Our Trainers</h1>
                             <p class="text-lg text-justify mb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                                 Pariatur
                                 quo asperiores

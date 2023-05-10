@@ -27,7 +27,7 @@
         <div class="px-4 xl:px-20" id="main_courses">
             <MiddleHeader header="Courses" class="my-7" />
             <div v-for="(mainCourse, index) in mainCourses" :key="`main_course_${index}`" class="w-full mb-4">
-                <h4 class="border-y border-gray-300 py-4 px-2 lg:px-8 text-2xl font-medium mb-8 bg-gradient-to-b from-red-500 to-red-800 text-white">{{ mainCourse.name }}
+                <h4 class="border-y border-gray-300 py-2 px-2 lg:px-8 text-2xl font-medium mb-8 bg-gradient-to-b from-red-500 to-red-800 text-white">{{ (index + 1) + '. ' + mainCourse.name }}
                     Course</h4>
                 <div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full gap-6">
