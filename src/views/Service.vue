@@ -1,0 +1,83 @@
+<template>
+    <div>
+        <!-- //! carousel -->
+        <div class="w-full relative">
+            <div class="w-full h-full absolute top-0 left-0 bg-black opacity-70 z-30"></div>
+            <div class="flex flex-col items-center justify-center w-full h-full absolute z-40">
+                <div class="text-white text-center">
+                    <h3 class="text-4xl font-medium mb-2">See Our Service Here</h3>
+                    <p class="text-md">We have been providing our customers<br>a lot of services and have done many projects
+                        efficiently</p>
+                </div>
+                <div
+                    class="text-white text-center absolute bottom-4 left-1/2 -translate-x-1/2 animate-pulse cursor-pointer">
+                    <a href="#main_services">
+                        <p class="text-lg">scroll down to continue</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-8 h-8 inline ">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+            <img src="../images/building.jpg" alt="" class="w-full h-[360px]">
+        </div>
+
+        <div class="px-4 sm:px-8 md:px-12 lg:px-24" id="main_services">
+            <MiddleHeader header="Services" subheader="services we provide" class="py-7" />
+            <div v-for="(service, index) in services" :key="`service_${index}`"
+                class="w-full flex flex-col lg:flex-row mb-8 shadow rounded overflow-hidden">
+                <img src="../images/building.jpg" alt="" class="w-full lg:w-1/2 h-[300px] object-cover "
+                    :class="[index % 2 == 0 ? 'lg:order-2' : '']">
+                <div class="w-full lg:w-1/2 px-8 py-7 lg:py-2 bg-white shadow flex flex-col justify-around">
+                    <div class="text-center lg:text-left">
+                        <h1 class="text-4xl sm:text-3xl font-bold lg:block mb-4 lg:mb-8">{{ service.name }}</h1>
+                        <p class="text-lg text-justify mb-4">{{ service.description }}</p>
+                        <ul class="flex flex-wrap">
+                            <li v-for="(outline) in service.outlines" :key="`${service}_${outline}`"
+                                class="w-auto inline-block mx-2 py-1 px-2 bg-red-700 text-white rounded mb-2">{{ outline }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <MiddleHeader header="Porjects" subheader="projects we have finished" class="py-7" />
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div v-for="(project, index) in projects" :key="`project_${index}`"
+                    class="w-full mb-4 bg-white block col-span-1 rounded-md overflow-hidden shadow-lg">
+                    <img src="../images/building.jpg" alt="" class="w-full h-[240px] object-cover mb-2">
+                    <div class="p-4">
+                        <h1 class="text-xl font-bold mb-2">{{ project.name }}</h1>
+                        <p class="mb-2">{{ project.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //! copyright -->
+        <div class="w-full bg-red-900 text-white text-center py-1">@copyright 2023 - All rights preserved to Mauc Training
+            Center</div>
+    </div>
+</template>
+
+<script setup>
+import MiddleHeader from '../components/MiddleHeader.vue';
+
+const services = [
+    { name: 'Landscape Project', description: "In this service, experienced professionals provide comprehensive landscape construction solutions from site preparation to installation, ensuring high-quality results that meet the client's needs and preferences.", outlines: ['outline one', 'outline two', 'outline three'] },
+    { name: 'Public Building Services', description: "In this service, skilled professionals offer design and construction solutions for public buildings such as schools, libraries, and government facilities. Projects are delivered on time and within budget with a focus on sustainability and accessibility.", outlines: ['outline one', 'outline two', 'outline three', 'outline four', 'outline five'] },
+    { name: 'Residential Service', description: "In this service, homeowners can expect personalized attention and tailored solutions for their home improvement needs, including renovations, repairs, and maintenance. Experienced professionals ensure quality workmanship and customer satisfaction.", outlines: ['outline one', 'outline two'] }
+]
+
+const projects = [
+    { name: 'HDB Solar PV System Drawings', description: 'The solar PV system drawing project involves creating a detailed diagram of the components involved in a photovoltaic system, such as solar panels, inverters, batteries, and electrical connections, using specialized software and technical knowledge.' },
+    { name: 'Myanmar Art & Handcrafts Center Project', description: 'In this project, a dam will be constructed to harness the power of water, generating renewable energy and providing irrigation for agriculture and potable water for communities.' },
+    { name: 'Kaei Dam Project', description: "I have completed the railway line drawing project, which includes a detailed plan of the railway system's features, such as tracks, switches, and signals. The drawing ensures the system is efficient and safe." },
+    { name: 'Circular Railway Line(Capricoin Survey', description: "I have created a detailed drawing of the monastery, including architectural features, such as the layout of the buildings, landscape design, and interior details, reflecting the monastic tradition and style." }
+]
+
+</script>
+
+<style lang="scss" scoped></style>
