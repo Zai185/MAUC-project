@@ -15,7 +15,7 @@
                         maiores exercitationem ipsa.</p>
                 </div>
                 <div>
-                    <router-link :to="{ name: 'About' }" @click.native="scrollToTop" class="text-red-700 text-xl font-medium hover:underline"> See More
+                    <router-link :to="{ name: 'About' }" class="text-red-700 text-xl font-medium hover:underline"> See More
                         About us
                         -></router-link>
                 </div>
@@ -31,7 +31,9 @@
         <div class="grid grid-cols-6 grid-rows-7 md:h-[800px] lg:h-[600px] gap-8">
             <div v-for="(course, index) in courses" :key="`course_${index}`"
                 class="w-full flex bg-white shadow-lg rounded-lg overflow-hidden" :class="course.span">
-                <div class="w-full h-[200px] md:h-full border-b border-black flex items-center justify-center">Image</div>
+                <div class="w-full h-[200px] md:h-full border-b border-black flex items-center justify-center">
+                    <img :src="course.url" :alt="course.url" class="w-full h-full object-cover">
+                </div>
                 <div class="w-full md:h-full justify-between p-4 flex flex-col ">
                     <div>
                         <h3 class="text-2xl font-medium mb-4">{{ course.name }}</h3>
@@ -64,7 +66,6 @@
                     <p>{{ project.about }}</p>
                     <ul class="list-disc px-7">
                         <li class="text-md font-medium" v-for="outline in project.outlines">{{ outline }}</li>
-
                     </ul>
                 </div>
             </div>
@@ -115,10 +116,10 @@ const texts = [
 ]
 
 const courses = [
-    { name: 'AutoCAD Course', courseOutline: ['basic course', 'basic to advanced course', 'drafting course', 'M&E drafting course', 'Electrical Drafting Course'], span: 'flex-col md:flex-row col-span-6 lg:col-span-4 row-span-3 lg:row-span-4' },
-    { name: 'Graphic Design', courseOutline: ['Logo Design', 'Billboard Design'], span: 'col-span-6 md:col-span-2 flex-col md:row-span-4 lg:row-span-4 ' },
-    { name: 'Revit Course', courseOutline: ['Architecture', 'Structure', 'M&E'], span: 'flex-col md:flex-row col-span-6 md:col-span-4 lg:col-span-3 md:row-span-2 lg:row-span-3' },
-    { name: 'Sketchup Course', courseOutline: ['basic course', 'intermediate course', 'advanced course'], span: 'flex-col md:flex-row col-span-6 md:col-span-4 lg:col-span-3 md:row-span-2 lg:row-span-3' },
+    { name: 'AutoCAD Course', courseOutline: ['basic course', 'basic to advanced course', 'drafting course', 'M&E drafting course', 'Electrical Drafting Course'], span: 'flex-col md:flex-row col-span-6 lg:col-span-4 row-span-3 lg:row-span-4', url: '../images/logos/autocad.png' },
+    { name: 'Graphic Design', courseOutline: ['Logo Design', 'Billboard Design'], span: 'col-span-6 md:col-span-2 flex-col md:row-span-4 lg:row-span-4', url: '../images/logos/revit.png' },
+    { name: 'Revit Course', courseOutline: ['Architecture', 'Structure', 'M&E'], span: 'flex-col md:flex-row col-span-6 md:col-span-4 lg:col-span-3 md:row-span-2 lg:row-span-3', url: '../images/logos/sketchup.png' },
+    { name: 'Sketchup Course', courseOutline: ['basic course', 'intermediate course', 'advanced course'], span: 'flex-col md:flex-row col-span-6 md:col-span-4 lg:col-span-3 md:row-span-2 lg:row-span-3', url: '../images/logos/graphic.png' },
 ]
 
 const projects = [
