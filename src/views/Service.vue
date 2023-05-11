@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <MiddleHeader header="Porjects" subheader="projects we have finished" class="py-7" />
+            <MiddleHeader header="Projects" subheader="projects we have finished" class="py-7" />
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div v-for="(project, index) in projects" :key="`project_${index}`"
                     class="w-full mb-4 bg-white block col-span-1 rounded-md overflow-hidden shadow-lg">
@@ -57,14 +57,13 @@
             </div>
         </div>
         <!-- //! copyright -->
-        <div class="w-full bg-red-900 text-white text-center py-1">
-            @copyright 2023 - All rights preserved to Mauc Training Center
-        </div>
+        <Copyright/>
     </div>
 </template>
 
 <script setup>
 import MiddleHeader from '../components/MiddleHeader.vue';
+import Copyright from '../components/Copyright.vue';
 
 const services = [
     { name: 'Landscape Project', description: "In this service, experienced professionals provide comprehensive landscape construction solutions from site preparation to installation, ensuring high-quality results that meet the client's needs and preferences.", outlines: ['outline one', 'outline two'] },
@@ -76,7 +75,7 @@ const projects = [
     { name: 'HDB Solar PV System Drawings', description: 'The solar PV system drawing project involves creating a detailed diagram of the components involved in a photovoltaic system, such as solar panels, inverters, batteries, and electrical connections, using specialized software and technical knowledge.' },
     { name: 'Myanmar Art & Handcrafts Center Project', description: 'In this project, a dam will be constructed to harness the power of water, generating renewable energy and providing irrigation for agriculture and potable water for communities.' },
     { name: 'Kaei Dam Project', description: "I have completed the railway line drawing project, which includes a detailed plan of the railway system's features, such as tracks, switches, and signals. The drawing ensures the system is efficient and safe." },
-    { name: 'Circular Railway Line(Capricoin Survey', description: "I have created a detailed drawing of the monastery, including architectural features, such as the layout of the buildings, landscape design, and interior details, reflecting the monastic tradition and style." }
+    { name: 'Circular Railway Line(Capricoin Survey)', description: "I have created a detailed drawing of the monastery, including architectural features, such as the layout of the buildings, landscape design, and interior details, reflecting the monastic tradition and style." }
 ]
 
 </script>

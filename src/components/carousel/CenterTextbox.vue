@@ -1,10 +1,10 @@
 <template>
     <transition name="fade-opacity" v-show="props.index === props.currentSlide">
         <div class="absolute block w-4/5" :class="props.textPos" >
-            <h3 class="text-2xl sm:text-3xl text-white mb-2">{{ props.heading }}</h3>
-            <p class="text-white mb-4">{{ props.subHeading}}</p>
+            <h3 class="text-xl sm:text-4xl text-white mb-2 sm:font-bold">{{ props.heading }}</h3>
+            <p class="text-white sm:text-xl mb-4 mx-8">{{ props.subHeading}}</p>
             <div class="flex items-center justify-center gap-4">
-                <button v-for="button in props.buttons" class="py-1 px-4 bg-red-600 text-white cursor-pointer text-lg">
+                <button v-for="button in props.buttons" class="py-1 px-4 text-yellow-500 font-medium border border-yellow-500 hover:bg-yellow-500 hover:text-white transition duration-300 cursor-pointer text-lg">
                     <router-link v-if="button.to" :to="button.to">{{ button.text }}</router-link>
                     <span v-else>{{button.text}}</span>
                 </button>

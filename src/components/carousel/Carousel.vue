@@ -5,21 +5,21 @@
             <CarouselItem v-for="(slide, index) in slides" :key="`item-${index}`" :slide="slide" :texts="texts"
                 :currentSlide="currentSlide" :direction="direction" :index="index" class="-z-10" />
 
-            <div class="w-full h-full absolute top-0 left-0 bg-gradient-to-tr from-black via-gray-800 opacity-80 z-0"></div>
+            <div class="w-full h-full absolute top-0 left-0 bg-black opacity-70 z-0"></div>
+            <!-- <div class="w-full h-full absolute top-0 left-0 bg-gradient-to-tr from-black via-gray-800 opacity-80 z-0"></div> -->
 
-            <CarouselControl @next="next" @prev="prev" class="z-40" @click="toggleHide" />
+            <CarouselControl @next="next" @prev="prev" class="z-20" @click="toggleHide" />
 
             <CenterTextbox v-if="texts" v-for="(text, index) in texts" :key="`text-${index}`" :index="index"
-                :currentSlide="currentSlide" :heading="text.heading" :subHeading="text.subHeading"
-                :textPos="textPos" :buttons="text.buttons" :direction="direction" />
-                
-            <div class="absolute w-full flex items-center justify-center left-0 bottom-4">
-                <div v-for="(no, index) in slides.length" class="w-10 h-1 border mx-1 transition duration-1000" :class="[index === currentSlide ? 'bg-white' : 'bg-transparent']"></div>
-            </div>
+                :currentSlide="currentSlide" :heading="text.heading" :subHeading="text.subHeading" :textPos="textPos"
+                :buttons="text.buttons" :direction="direction" class="z-20" />
 
+            <div class="absolute w-full flex items-center justify-center left-0 bottom-4">
+                <div v-for="(no, index) in slides.length" class="w-10 h-1 border mx-1 transition duration-1000"
+                    :class="[index === currentSlide ? 'bg-white' : 'bg-transparent']"></div>
+            </div>
         </div>
     </div>
-    {{ texts[0].buttons.text }}
 </template>
 
 <script setup>

@@ -80,12 +80,12 @@
             </div>
         </div>
         <!-- //! copyright -->
-        <div class="w-full bg-red-900 text-white text-center py-1">@copyright 2023 - All rights preserved to Mauc Training
-            Center</div>
+        <Copyright/>
     </div>
 </template>
 
 <script setup>
+import Copyright from '../components/Copyright.vue';
 import MiddleHeader from '../components/MiddleHeader.vue';
 const activities = [
     {name: 'Free Class', about: 'We have offer free class to 21 students on May, 2022'},

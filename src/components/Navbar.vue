@@ -1,18 +1,19 @@
 <template>
     <div id="triggerNavbar"></div> <!-- //!Trigger Point  -->
-        <div class="flex items-center justify-between w-full h-16 px-8 md:px-16 py-10 bg-red-500 shadow-md shadow-gray-600 z-[100]"
-        :class="[navbarDown ? 'fixed top-0 left-0 animate-fade-tb' : 'relative']" style="animation-duration: 300ms">
+    <div class="flex items-center justify-between w-full h-16 px-8 md:px-16 py-10 bg-red-500 shadow-md shadow-gray-600 z-[100]"
+        :class="[navbarDown ? 'sticky top-0 left-0 animate-fade-tb' : 'relative']" style="animation-duration: 300ms">
         <img src="../images/mauc.png" class="w-12 h-12">
         <!-- //^ menu icon  -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            @click="navbarOpen = true" class="w-8 h-8 block text-white md:hidden">
+            @click="navbarOpen = true" class="w-8 h-8 block text-white md:hidden cursor-pointer">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
 
         <!-- //^ bigger screen  -->
         <div class="hidden md:flex">
-            <router-link v-for="(nav) in navMenu" :key="nav" :to="nav.to"
-                class="mx-3 px-1 block transition duration-300 text-lg text-white relative" :class="[$route.name === nav.name ? 'underline underline-offset-2' : 'text-shadow']">
+            <router-link v-for="(nav) in navMenu" :key="nav" :to="nav.to" @click="scrollTop"
+                class="mx-3 px-1 block transition duration-300 text-lg text-white relative"
+                :class="[$route.name === nav.name ? 'underline underline-offset-2' : 'text-shadow']">
                 {{ nav.name }}
             </router-link>
         </div>
@@ -20,25 +21,25 @@
 
         <!-- //^ smaller screen  -->
 
-        <div class="block md:hidden fixed right-0 top-0 w-[256px] h-[100vh] bg-red-600 text-white shadow-md shadow-black py-4 transition duration-300 "
-            :class="[navbarOpen ? 'translate-x-0' : 'translate-x-full']">
-            <p class="text-lg font-medium text-center underline underline-offset-2 ">Menu List</p>
-            <div class="mt-8">
-                <router-link v-for="(nav, index) in navMenu" :key="nav" :to="nav.to" @click="navbarOpen = false"
-                    class="block w-full pl-4 py-2 border-b transition duration-300 hover:bg-gray-100 hover:text-red-600"
-                    :class="[index == 0 ? 'border-t' : '']">
-                    {{ nav.name }}
-                </router-link>
-            </div>
-            <!-- //^cross icon  -->
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                @click="navbarOpen = false" class="w-8 h-8 absolute top-2 right-2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </div>
-
+        
         <!-- //^ smaller screen  -->
-
+        
+    </div>
+    <div class="block md:hidden fixed right-0 top-0 w-[256px] h-[100vh] bg-red-600 text-white shadow-md shadow-black py-4 transition duration-300 z-[101]"
+        :class="[navbarOpen ? 'translate-x-0' : 'translate-x-full']">
+        <p class="text-lg font-medium text-center underline underline-offset-2 ">Menu List</p>
+        <div class="mt-8">
+            <router-link v-for="(nav, index) in navMenu" :key="nav" :to="nav.to" @click="scrollTop"
+                class="block w-full pl-4 py-2 border-b transition duration-300 hover:bg-gray-100 hover:text-red-600"
+                :class="[[index === 0 ? 'border-t' : '']]">
+                {{ nav.name }}
+            </router-link>
+        </div>
+        <!-- //^cross icon  -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            @click="navbarOpen = false" class="w-8 h-8 absolute top-2 right-2 cursor-pointer">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
     </div>
     <router-view></router-view>
 </template>
@@ -52,6 +53,7 @@ const navMenu = [
     { name: 'Service', to: { name: 'Service' } },
 
 ]
+
 const navbarOpen = ref(false)
 const navbarDown = ref(false)
 onMounted(() => {
@@ -64,6 +66,13 @@ onMounted(() => {
         }
     })
 })
+
+function scrollTop(){
+    navbarOpen.value = false
+    setTimeout(() => {
+        scrollTo(0,0)
+    },10);
+}
 
 
 

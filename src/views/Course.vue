@@ -26,14 +26,18 @@
 
         <div class="px-4 xl:px-20" id="main_courses">
             <MiddleHeader header="Courses" class="my-7" />
-            <div v-for="(mainCourse, index) in mainCourses" :key="`main_course_${index}`" class="w-full mb-4">
-                <h4 class="border-y border-gray-300 py-2 px-2 lg:px-8 text-2xl font-medium mb-8 bg-gradient-to-b from-red-500 to-red-800 text-white">{{ (index + 1) + '. ' + mainCourse.name }}
+            <div v-for="(mainCourse, index) in mainCourses" :key="`main_course_${index}`" @click="showId" class="w-full mb-4">
+                <h4 :id="`main_course_${mainCourse.id}`"
+                class="border-y border-gray-300 py-2 px-2 lg:px-8 text-2xl font-medium mb-8 bg-gradient-to-b from-orange-500 to-red-800 text-white">{{ (index + 1) + '. ' + mainCourse.name }}
                     Course</h4>
                 <div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full gap-6">
                         <div v-for="(course, index) in mainCourse.courses" :key="course.name"
                             class="w-full mb-4 bg-white block col-span-1 rounded-md overflow-hidden shadow-lg">
-                            <img src="../images/building.jpg" alt="" class="w-full h-[240px] object-cover mb-2">
+                            <div class="relative">
+                                <img :src="mainCourse.url" alt="" class="w-full h-[240px] object-contain bg-gradient-to-tr from-orange-400 to-yellow-200 mb-2">
+                                <p class="bg-gray-900 text-white absolute bottom-0 right-0 px-4 py-1 z-20">{{ course.name }}</p>
+                            </div>
                             <div class="p-4">
                                 <h1 class="text-xl font-bold mb-2">{{ course.name }}</h1>
                                 <p class="mb-2">{{ course.about }}</p>
@@ -49,17 +53,18 @@
         </div>
 
         <!-- //! copyright -->
-        <div class="w-full bg-red-900 text-white text-center py-1">@copyright 2023 - All rights preserved to Mauc Training
-            Center</div>
+        <Copyright/>
     </div>
 </template>
 
 <script setup>
+import Copyright from '../components/Copyright.vue';
 import MiddleHeader from '../components/MiddleHeader.vue';
 
 //^ 'basic course', 'basic to advanced course', 'drafting course', 'M&E drafting course', 'Electrical Drafting Course'
 const mainCourses = [
     {
+        id: 1,
         name: 'AutoCAD',
         courses: [
             { name: "Basic Course", about: "in this basic course, you will learn about the basic structure of architect, structure and so on...", fee: '120000' },
@@ -67,30 +72,42 @@ const mainCourses = [
             { name: "Drafting Course", about: "in this basic course, you will learn about the basic structure of architect, structure and so on...", fee: '120000' },
             { name: "M&E Drafting Course", about: "in this basic course, you will learn about the basic structure of architect, structure and so on...", fee: '120000' },
             { name: "Electrical Drafting Course", about: "in this basic course, you will learn about the basic structure of architect, structure and so on...", fee: '120000' },
-        ]
+        ],
+        url: '../images/logos/autocad.png'
     },
     {
+        id: 3,
         name: 'Revit',
         courses: [
             { name: "Basic Course", about: "in this basic course, you will learn about the basic structure of architect, structure and so on...", fee: '120000' },
             { name: "Basic to Advanced Course", about: "in this course, you will learn about the basic structure of architect, structure and so on...", fee: '120000' },
-        ]
+        ],
+        url: '../images/logos/revit.png'
     },
     {
+        id: 4,
         name: 'SketchUp',
         courses: [
             { name: "Basic Course", about: "in this basic course, you will learn about the basic structure of architect, structure and so on...", fee: '120000' },
             { name: "Basic to Advanced Course", about: "in this course, you will learn about the basic structure of architect, structure and so on...", fee: '120000' },
-        ]
+        ],
+        url: '../images/logos/sketchup.png'
     },
     {
+        id: 2,
         name: 'Graphic Design',
         courses: [
             { name: "Logo Design", about: "in this basic course, you will learn about the basic structure of architect, structure and so on...", fee: '120000' },
             { name: "Poster and Billboard Design", about: "in this course, you will learn about the basic structure of architect, structure and so on...", fee: '120000' },
-        ]
+        ],
+        url: '../images/logos/graphic.png'
     },
 ]
+
+function showId(event){
+    const el = document.getElementById('main_course_from_courses_0')
+    console.log(el)
+}
 </script>
 
 <style lang="scss" scoped></style>

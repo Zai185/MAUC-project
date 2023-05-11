@@ -31,12 +31,14 @@
         <div class="grid grid-cols-6 grid-rows-7 md:h-[800px] lg:h-[600px] gap-8">
             <div v-for="(course, index) in courses" :key="`course_${index}`"
                 class="w-full flex bg-white shadow-lg rounded-lg overflow-hidden" :class="course.span">
-                <div class="w-full h-[200px] md:h-full border-b border-black flex items-center justify-center">
-                    <img :src="course.url" :alt="course.url" class="w-full h-full object-cover">
+                <div class="w-full h-[200px] md:h-full overflow-hidden relative">
+                    <img :src="course.url" :alt="course.url"
+                        class="w-full h-full object-contain p-4 bg-gradient-to-tr from-orange-400 to-yellow-200">
+                    <p class="bg-gray-900 text-white absolute bottom-0 right-0 px-4 py-1 z-20">{{ course.name }}</p>
                 </div>
-                <div class="w-full md:h-full justify-between p-4 flex flex-col ">
+                <div class="w-full md:h-full justify-between py-4 px-2 lg:p-4 flex flex-col ">
                     <div>
-                        <h3 class="text-2xl font-medium mb-4">{{ course.name }}</h3>
+                        <h3 class="text-2xl font-medium mb-4 px-2">{{ course.name }} Course</h3>
                         <ul class="list-disc pl-8">
                             <li v-for="(outline, ind) in course.courseOutline" :key="`outline_${ind}_of${index}`"
                                 class="pb-2 capitalize">
@@ -46,7 +48,8 @@
                     </div>
                     <button
                         class="self-end py-1 px-3 text-sm border border-red-500 text-right text-red-500 font-medium hover:text-white hover:bg-red-500 cursor-pointer transition ">
-                        <router-link :to="{name: 'Course'}">{{ `See about ${course.name}` }}</router-link>
+                        <router-link :to="{ name: 'Course' }" :name="`main_course_${course.id}`" @click="scrollView">{{ `See
+                            about ${course.name}` }}</router-link>
                     </button>
                 </div>
             </div>
@@ -71,7 +74,7 @@
             </div>
         </div>
         <router-link :to="{ name: 'Service' }"
-            class="block text-center bg-red-500 text-white capitalize font-medium py-2 hover:bg-red-700">See about our
+            class="block text-center bg-gray-800 text-white capitalize font-medium py-2 hover:bg-gray-700">See about our
             service and project history =></router-link>
     </div>
 
@@ -92,16 +95,54 @@
             </div>
         </div>
     </div> -->
-    
+
+    <!-- //! location -->
+    <div class="flex items-center px-4 lg:px-8 xl:px-16 flex-wrap">
+        <iframe v-if="locationPlace == 'Hledan'"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30551.615722316867!2d96.09189387431637!3d16.828738900000026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c195ffe79c7c81%3A0xf24ca2c87fb023b2!2sMAUC%20Training%20Center!5e0!3m2!1sen!2smm!4v1683799330463!5m2!1sen!2smm"
+            class="w-full xlg:w-1/4 h-[370px] order-3 xlg:order-1" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <iframe v-else
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3818.126436449532!2d96.1869829749224!3d16.869638883931945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1ed467f42fbd9%3A0xd2dad9871b852f06!2sMAUC%20Training%20Center%20(Tamwe)!5e0!3m2!1sen!2smm!4v1683826584094!5m2!1sen!2smm"
+            class="w-full xlg:w-1/4 h-[370px] order-3 xlg:order-1" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+
+        <div class="w-full sm:w-2/3 xlg:w-1/2 h-[370px] bg-gray-800 text-white relative overflow-hidden order-2 sm:order-1 xlg:order-2">
+            <div class="flex text-center text-lg font-medium border-b">
+                <button class="w-1/2 py-2 cursor-pointer border-r" @click="locationPlace = 'Hledan'" :class="[locationPlace =='Hledan'? ' shadow-inner shadow-white' : '']">Hledan</button>
+                <button class="w-1/2 py-2 cursor-pointer" @click="locationPlace = 'North Dagon'" :class="[locationPlace == 'North Dagon'? 'shadow-inner shadow-white' : '']">North Dagon</button>
+            </div>
+            <div v-for="(location, index) in locations" :key="`location_${index}`" class=" p-8 absolute">
+                <transition name="slide-right">
+                    <div v-show="locationPlace === location.name">
+                        <h3 class="text-4xl font-bold mb-4">{{ location.name }}</h3>
+                        <div v-for="(detail, ind) in location.details" :key="`location_detail_${ind}`"
+                            class="flex gap-4 items-center mb-7">
+                            <div class="w-8" v-html="detail.icon"></div>
+                            <p>{{ detail.about }}</p>
+                        </div>
+                    </div>
+                </transition>
+            </div>
+        </div>
+
+        <img v-if="locationPlace == 'Hledan'" src="../images/building.jpg" alt="" class="w-full sm:w-1/3 xlg:w-1/4 h-[370px] object-cover order-1 sm:order-2 xlg:order-3">
+        <img v-if="locationPlace == 'North Dagon'" src="../images/mauc.png" alt="" class="w-full sm:w-1/3 xlg:w-1/4 h-[370px] object-cover order-1 sm:order-2 xlg:order-3">
+    </div>
+    <Copyright />
+
 
     <!-- //! copyright -->
-    <div class="w-full bg-red-900 text-white text-center py-1">@copyright 2023 - All rights preserved to Mauc Training Center</div>
 </template>
 
 <script setup>
 
 import MiddleHeader from '../components/MiddleHeader.vue';
+import Copyright from '../components/Copyright.vue';
 import Carousel from '../components/carousel/Carousel.vue';
+import { ref } from 'vue';
 
 const slides = [
     '../images/building.jpg',
@@ -110,16 +151,16 @@ const slides = [
 ]
 
 const texts = [
-    { heading: 'MAUC Training Center', subHeading: 'Find your passion with us', buttons: [{text: 'See Our Course' , to: {name: 'Course'}} ] },
-    { heading: 'Heading two', subHeading: 'Something two' },
-    { heading: 'Heading three', subHeading: 'Something three' },
+    { heading: 'MAUC Training Center', subHeading: 'Find your passion with us', buttons: [{ text: 'See About Us', to: { name: 'About' } }, { text: 'Contact Us', to: { name: 'About' } }] },
+    { heading: 'Courses we are Offer', subHeading: 'We are training many student from basic to advance', buttons: [{ text: 'See Our Course', to: { name: 'Course' } }] },
+    { heading: 'Make you dreams true with us', subHeading: 'Find your passion with us', buttons: [{ text: 'See Our Service', to: { name: 'Service' } }] },
 ]
 
 const courses = [
-    { name: 'AutoCAD Course', courseOutline: ['basic course', 'basic to advanced course', 'drafting course', 'M&E drafting course', 'Electrical Drafting Course'], span: 'flex-col md:flex-row col-span-6 lg:col-span-4 row-span-3 lg:row-span-4', url: '../images/logos/autocad.png' },
-    { name: 'Graphic Design', courseOutline: ['Logo Design', 'Billboard Design'], span: 'col-span-6 md:col-span-2 flex-col md:row-span-4 lg:row-span-4', url: '../images/logos/revit.png' },
-    { name: 'Revit Course', courseOutline: ['Architecture', 'Structure', 'M&E'], span: 'flex-col md:flex-row col-span-6 md:col-span-4 lg:col-span-3 md:row-span-2 lg:row-span-3', url: '../images/logos/sketchup.png' },
-    { name: 'Sketchup Course', courseOutline: ['basic course', 'intermediate course', 'advanced course'], span: 'flex-col md:flex-row col-span-6 md:col-span-4 lg:col-span-3 md:row-span-2 lg:row-span-3', url: '../images/logos/graphic.png' },
+    { id: 1, name: 'AutoCAD', courseOutline: ['basic course', 'basic to advanced course', 'drafting course', 'M&E drafting course', 'Electrical Drafting Course'], span: 'flex-col md:flex-row col-span-6 lg:col-span-4 row-span-3 lg:row-span-4', url: '../images/logos/autocad.png' },
+    { id: 2, name: 'Graphic Design', courseOutline: ['Logo Design', 'Billboard Design'], span: 'col-span-6 md:col-span-2 flex-col md:row-span-4 lg:row-span-4', url: '../images/logos/graphic.png' },
+    { id: 3, name: 'Revit', courseOutline: ['Architecture', 'Structure', 'M&E'], span: 'flex-col md:flex-row col-span-6 md:col-span-4 lg:col-span-3 md:row-span-2 lg:row-span-3', url: '../images/logos/revit.png' },
+    { id: 4, name: 'Sketchup', courseOutline: ['basic course', 'intermediate course', 'advanced course'], span: 'flex-col md:flex-row col-span-6 md:col-span-4 lg:col-span-3 md:row-span-2 lg:row-span-3', url: '../images/logos/sketchup.png' },
 ]
 
 const projects = [
@@ -128,7 +169,85 @@ const projects = [
     { name: 'Public Building Project', about: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, eum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, odit!', outlines: ['outline one', 'outline two'] },
 ]
 
+const locations = [
+    {
+        name: 'Hledan',
+        details: [
+            {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"           stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                    </svg>`,
+                about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem corrupti illum laudantium modi doloribus.'
+            },
+            {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                    </svg>`,
+                about: '+989 893 932 843'
+            },
+            {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                        </svg>`,
+                about: 'mkhant189@gmail.com'
+
+            }
+        ]
+    },
+    {
+        name: 'North Dagon',
+        details: [
+            {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"           stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                    </svg>`,
+                about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem corrupti illum laudantium modi doloribus.'
+            },
+            {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                    </svg>`,
+                about: '+989 893 932 843'
+            },
+            {
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                        </svg>`,
+                about: 'mkhant189@gmail.com'
+
+            }
+        ]
+    }
+]
+
+const locationPlace = ref('Hledan');
+
+
+function scrollView(event) {
+    const targetId = event.target.name
+    setTimeout(() => {
+        const el = document.getElementById(targetId)
+        el.scrollIntoView(true)
+    }, 40);
+}
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.slide-right-enter-active,
+.slide-right-leave-active {
+    transition: all 1s ease;
+}
+
+.slide-right-enter-from {
+    transform: translateX(-100%)
+}
+
+.slide-right-leave-to {
+    transform: translateX(120%)
+}
+</style>

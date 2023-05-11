@@ -12,6 +12,9 @@ export default {
                 '2xs': '10px',
                 '3xs': '8px'
             },
+            screens: {
+                'xlg' : '940px'
+            },
             keyframes: {
                 'fade': {
                     from: {

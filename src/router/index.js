@@ -36,13 +36,9 @@ const routes = [
     }
 ]
 
-function scrollToTop() {
-    window.scrollTo(0, 0);
-}
-
 const router = createRouter({
     routes,
     history: createWebHistory()
 })
-
+    
 export default router
