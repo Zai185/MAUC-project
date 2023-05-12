@@ -24,7 +24,7 @@
             <img src="../images/building.jpg" alt="" class="w-full h-[360px]">
         </div>
 
-        <div class="px-4 sm:px-12 md:px-20 xl:px-24"> <!-- //! wrapper -->
+        <div class="px-4 sm:px-12 md:px-20 xl:px-24" id="main_about"> <!-- //! wrapper -->
             <!-- //! about center  -->
 
             <div class="my-7 border-t border-gray-200">

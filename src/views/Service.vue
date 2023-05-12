@@ -29,7 +29,7 @@
             <MiddleHeader header="Services" subheader="services we provide" class="py-7" />
             <div v-for="(service, index) in services" :key="`service_${index}`"
                 class="w-full flex flex-col lg:flex-row mb-8 shadow rounded overflow-hidden">
-                <img src="../images/building.jpg" alt="" class="w-full lg:w-1/2 h-[300px] object-cover "
+                <img src="../images/building.jpg" alt="" class="w-full lg:w-1/2 h-[300px] object-cover"
                     :class="[index % 2 == 0 ? 'lg:order-2' : '']">
                 <div class="w-full lg:w-1/2 px-2 sm:px-8 py-7 lg:py-2 bg-white shadow flex flex-col">
                     <div class="text-center lg:text-left">
@@ -48,7 +48,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div v-for="(project, index) in projects" :key="`project_${index}`"
                     class="w-full mb-4 bg-white block col-span-1 rounded-md overflow-hidden shadow-lg">
-                    <img src="../images/building.jpg" alt="" class="w-full h-[240px] object-cover mb-2">
+                    <div class="overflow-hidden">
+                        <img :src="project.url" :alt="project.url" class="w-full h-[240px] object-contain scale-150 hover:scale-100 transition duration-300 mb-2">
+                    </div>
                     <div class="p-4">
                         <h1 class="text-xl font-bold mb-2">{{ project.name }}</h1>
                         <p class="mb-2">{{ project.description }}</p>
@@ -72,10 +74,10 @@ const services = [
 ]
 
 const projects = [
-    { name: 'HDB Solar PV System Drawings', description: 'The solar PV system drawing project involves creating a detailed diagram of the components involved in a photovoltaic system, such as solar panels, inverters, batteries, and electrical connections, using specialized software and technical knowledge.' },
-    { name: 'Myanmar Art & Handcrafts Center Project', description: 'In this project, a dam will be constructed to harness the power of water, generating renewable energy and providing irrigation for agriculture and potable water for communities.' },
-    { name: 'Kaei Dam Project', description: "I have completed the railway line drawing project, which includes a detailed plan of the railway system's features, such as tracks, switches, and signals. The drawing ensures the system is efficient and safe." },
-    { name: 'Circular Railway Line(Capricoin Survey)', description: "I have created a detailed drawing of the monastery, including architectural features, such as the layout of the buildings, landscape design, and interior details, reflecting the monastic tradition and style." }
+    { name: 'HDB Solar PV System Drawings', url: '../images/projects/solor-pv-sys.jpg' ,description: 'The solar PV system drawing project involves creating a detailed diagram of the components involved in a photovoltaic system, such as solar panels, inverters, batteries, and electrical connections, using specialized software and technical knowledge.' },
+    { name: 'Myanmar Art & Handcrafts Center Project', url: '../images/projects/art-handcrafts.jpg',description: 'In this project, a dam will be constructed to harness the power of water, generating renewable energy and providing irrigation for agriculture and potable water for communities.' },
+    { name: 'Kaei Dam Project', url: '../images/projects/kaei-dam.jpg', description: "I have completed the railway line drawing project, which includes a detailed plan of the railway system's features, such as tracks, switches, and signals. The drawing ensures the system is efficient and safe." },
+    { name: 'Circular Railway Line(Capricoin Survey)',url: '../images/projects/capricoin-survey.jpg', description: "I have created a detailed drawing of the monastery, including architectural features, such as the layout of the buildings, landscape design, and interior details, reflecting the monastic tradition and style." }
 ]
 
 </script>
