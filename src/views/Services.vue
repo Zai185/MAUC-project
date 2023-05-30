@@ -33,8 +33,8 @@
                     :class="[index % 2 == 0 ? 'lg:order-2' : '']">
                 <div class="w-full lg:w-1/2 px-2 sm:px-8 py-7 lg:py-2 bg-white shadow flex flex-col">
                     <div class="text-center lg:text-left">
-                        <h1 class="text-3xl sm:text-4xl font-bold lg:block mb-4 lg:mb-8">{{ service.name }}</h1>
-                        <p class="text-lg text-justify mb-4">{{ service.description }}</p>
+                        <h1 class="text-3xl py-2 font-bold lg:block mb-4 lg:mb-8">{{ service.name }}</h1>
+                        <p class="text-md text-justify mb-4 text-gray-800">{{ service.description }}</p>
                         <ul class="flex flex-wrap">
                             <li v-for="(outline) in service.outlines" :key="`${service}_${outline}`"
                                 class="w-auto inline-block mx-2 py-1 px-2 bg-red-700 text-white rounded mb-2">{{ outline }}

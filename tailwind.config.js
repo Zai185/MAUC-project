@@ -13,7 +13,7 @@ export default {
                 '3xs': '8px'
             },
             screens: {
-                'xlg' : '940px'
+                'xlg': '940px'
             },
             keyframes: {
                 'fade': {
@@ -36,50 +36,63 @@ export default {
                     from: { opacity: 0, transform: 'translateY(-10px)' },
                     to: { opacity: 1, transform: 'translateY(0)' }
                 },
-                'text-in-out':{
-                    from: {width: '80%'},
-                    '30%': {width: 0},
-                    to: {width: '80%'},
+                'text-in-out': {
+                    from: { width: '80%' },
+                    '30%': { width: 0 },
+                    to: { width: '80%' },
                 },
-                'text-in-out-re':{
-                    from: {width: '80%'},
-                    '30%': {width: 0},
-                    to: {width: '80%'},
+                'text-in-out-re': {
+                    from: { width: '80%' },
+                    '30%': { width: 0 },
+                    to: { width: '80%' },
                 },
-                'text-slide-in':{
-                    from: {transform: 'translateX(0)'},
-                    '25%': {transform: 'translateX(-100%)', opacity: 0},
-                    '50%': {transform: 'translateX(100%)'},
-                    '75%': { opacity: 1},
-                    to: {transform: 'translateX(0)'},
+                'text-slide-in': {
+                    from: { transform: 'translateX(0)' },
+                    '25%': { transform: 'translateX(-100%)', opacity: 0 },
+                    '50%': { transform: 'translateX(100%)' },
+                    '75%': { opacity: 1 },
+                    to: { transform: 'translateX(0)' },
                 },
-                'text-slide-in-re':{
-                    from: {transform: 'translateX(0)'},
-                    '50%': {transform: 'translateX(-100%)'},
-                    to: {transform: 'translateX(0)'},
+                'text-slide-in-re': {
+                    from: { transform: 'translateX(0)' },
+                    '50%': { transform: 'translateX(-100%)' },
+                    to: { transform: 'translateX(0)' },
                 },
-                
-                // 'text-in-out-re':{
-                //     from:{opacity: 0},
-                //     '50%':{transform: 'translateX(-200%)'},
-                //     '70%': {opacity: 1},
-                //     to: {transform: 'translateX(0)'}
-                // },
-                'fade-tb' : {
-                    from : {opacity: 0, transform: 'translateY(-10px)'},
-                    to : {opacity: 1, transform: 'translateY(0)'},
+                'fade-tb': {
+                    from: { opacity: 0, transform: 'translateY(-10px)' },
+                    to: { opacity: 1, transform: 'translateY(0)' },
+                },
+                'scale-up': {
+                    from: { width: 0 },
+                    to: { width: '320px' }
+                },
+                'drop-toggle': {
+                    from: { transform: 'translateX(100%)' },
+                    to: { transform: 'translateX(0)' }
+                },
+                'drop-toggle-re': {
+                    from: { transform: 'translateX(0)' },
+                    to: { transform: 'translateX(100%)' },
+                },
+                'y-translate': {
+                    from: { transform: 'translateY(100%)' },
+                    to: { transform: 'translateY(0)' },
                 }
             },
             animation: {
                 fade: 'fade 300ms ease forwards',
                 fadeback: 'fade-back 300ms ease forwards',
                 'fade-in': 'fade-in 1s ease forwards',
-                'fade-in-out' : 'text-in-out 3s ease forwards',
-                'fade-in-out-re' : 'text-in-out-re 3s ease forwards',
-                'text-slide' : 'text-slide-in 2s ease-in forwards',
-                'text-slide-re' : 'text-slide-in-re 2s ease-out reverse forwards',
-                'fade-tb' : 'fade-tb 2s ease-in-out forwards',
-                'fade-tb-re' : 'fade-tb 2s ease-in-out forwards reverse',
+                'fade-in-out': 'text-in-out 3s ease forwards',
+                'fade-in-out-re': 'text-in-out-re 3s ease forwards',
+                'text-slide': 'text-slide-in 2s ease-in forwards',
+                'text-slide-re': 'text-slide-in-re 2s ease-out reverse forwards',
+                'fade-tb': 'fade-tb 2s ease-in-out forwards',
+                'fade-tb-re': 'fade-tb 2s ease-in-out forwards reverse',
+                'scale-up': 'scale-up 700ms ease forwards',
+                'drop-toggle': 'drop-toggle 400ms ease forwards',
+                'drop-toggle-re': 'drop-toggle-re 400ms ease forwards',
+                'y-translate': 'y-translate 1000ms ease forwards'
             }
         },
     },

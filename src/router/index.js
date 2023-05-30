@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
-import Course from '../views/Course.vue'
-import Service from '../views/Service.vue'
+import Courses from '../views/Courses.vue'
+import Services from '../views/Services.vue'
+import Contact from '../views/Contact.vue'
 import Navbar from '../components/Navbar.vue'
+import store from '../store'
 
 const routes = [
     {
@@ -23,18 +25,24 @@ const routes = [
                 component: About,
             },
             {
-                path: '/course',
-                name: 'Course',
-                component: Course,
+                path: '/courses',
+                name: 'Courses',
+                component: Courses,
             },
             {
-                path: '/service',
-                name: 'Service',
-                component: Service,
+                path: '/services',
+                name: 'Services',
+                component: Services,
+            },
+            {
+                path: '/contact',
+                name: 'Contact',
+                component: Contact,
             },
         ]
     }
 ]
+
 
 const router = createRouter({
     routes,
