@@ -3,10 +3,11 @@
     <div class="flex items-center justify-between w-full h-16 px-8 md:px-16 py-7 bg-red-500 shadow-gray-600 z-[100]"
         :class="[navbarDown ? 'sticky top-0 left-0 animate-fade-tb shadow-md' : 'relative']"
         style="animation-duration: 300ms">
-        <img src="../images/mauc.png" class="w-10 h-10">
+        <img src="../images/mauc.png" alt="mauc logo" class="object-contain w-10 h-10">
+        
         <!-- //^ menu icon  -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            @click="navbarOpen = true" class="w-8 h-8 block text-white md:hidden cursor-pointer">
+            @click="navbarOpen = true" class="block w-8 h-8 text-white cursor-pointer md:hidden">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
 
@@ -14,7 +15,7 @@
         <div class="hidden md:flex">
             <router-link v-for="(nav) in navMenu" :key="nav.name" :to="nav.to" @click="scrollTop(); consoleLog()"
             :style="[$route.name == nav.name? 'pointer-events : none' : '']"
-            class="mx-3 px-1 block transition duration-300 text-lg text-white relative"
+            class="relative block px-1 mx-3 text-lg text-white transition duration-300"
             :class="[$route.name === nav.name ? 'text-shadow-on underline decoration-2 underline-offset-8' : 'text-shadow']">
                 {{ nav.name }}
             </router-link>
@@ -32,21 +33,17 @@
         <p class="text-lg font-medium text-center underline underline-offset-2 ">Menu List</p>
         <div class="mt-8">
             <router-link v-for="(nav, index) in navMenu" :key="nav" :to="nav.to" @click="scrollTop"
-                class="block w-full pl-4 py-2 border-b transition duration-300 hover:bg-gray-100 hover:text-red-600"
+                class="block w-full py-2 pl-4 transition duration-300 border-b hover:bg-gray-100 hover:text-red-600"
                 :class="[[index === 0 ? 'border-t' : '']]">
                 {{ nav.name }}
             </router-link>
         </div>
         <!-- //^cross icon  -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            @click="navbarOpen = false" class="w-8 h-8 absolute top-2 right-2 cursor-pointer">
+            @click="navbarOpen = false" class="absolute w-8 h-8 cursor-pointer top-2 right-2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
     </div>
-    <!-- <div v-if="$store.state.loading" class="w-full flex justify-center items-center gap-4 bg-gray-300 pb-32 flex-col md:flex-row" style="height: calc(100vh - 64px)">
-            <img src="../images/mauc.png" alt="" class="w-32 h-32">
-        <p class="text-3xl font-semibold w-0 whitespace-nowrap overflow-hidden animate-scale-up"><span class="text-red-600">MAUC</span> <span class="text-yellow-600">Training Center</span></p>
-    </div> -->
     <router-view></router-view>
 </template>
 

@@ -1,45 +1,46 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import About from '../views/About.vue'
-import Courses from '../views/Courses.vue'
-import Services from '../views/Services.vue'
-import Contact from '../views/Contact.vue'
-import Navbar from '../components/Navbar.vue'
-import store from '../store'
+import CourseView from '../views/CourseView.vue'
+
 
 const routes = [
     {
         path: '/',
         redirect: '/home',
-        component: Navbar,
+        component: ()=>import('../components/NavBar.vue'),
         children: [
 
             {
                 path: '/home',
                 name: 'Home',
-                component: Home,
+                component: ()=> import('../views/Home.vue')
             },
             {
                 path: '/about',
                 name: 'About',
-                component: About,
+                component: ()=> import('../views/About.vue') ,
             },
             {
                 path: '/courses',
                 name: 'Courses',
-                component: Courses,
+                component: ()=> import('../views/Courses.vue') ,
             },
             {
                 path: '/services',
                 name: 'Services',
-                component: Services,
+                component: ()=> import('../views/Services.vue') ,
+                
             },
             {
                 path: '/contact',
                 name: 'Contact',
-                component: Contact,
+                component: ()=> import('../views/Contact.vue') ,
             },
         ]
+    },
+    {
+        path: '/courses/:slug',
+        name: 'CourseView',
+        component: CourseView
     }
 ]
 

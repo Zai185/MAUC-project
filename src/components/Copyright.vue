@@ -1,13 +1,13 @@
 <template>
     <div>
         <!-- //! footer -->
-        <div class="w-full bg-gray-900 text-white p-4 md:px-12 border-b">
+        <div class="w-full p-4 text-white bg-gray-900 border-b md:px-12">
             <div class="flex items-center justify-center gap-4 mb-2">
-                <img src="../images/mauc.png" alt="" class="w-8 h-8">
+                <img src="../images/mauc.png" alt="mauc logo" class="w-8 h-8">
                 <h1 class="text-2xl">MAUC Training Center</h1>
             </div>
-            <p class="text-sm font-medium text-center my-2">Find us on social media apps</p>
-            <div class="flex justify-center items-center gap-3 mb-2">
+            <p class="my-2 text-sm font-medium text-center">Find us on social media apps</p>
+            <div class="flex items-center justify-center gap-3 mb-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 16 16">
                     <path
                         d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
@@ -22,7 +22,7 @@
                 </svg>
             </div>
         </div>
-        <div class="w-full text-sm sm:text-md bg-gray-900 text-white text-center py-1">
+        <div class="w-full py-1 text-sm text-center text-white bg-gray-900 sm:text-md">
             @copyright 2023 - All rights preserved to Mauc Training Center
         </div>
     </div>

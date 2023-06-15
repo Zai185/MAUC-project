@@ -22,37 +22,43 @@
                 </div>
             </div>
             <img src="../images/building.jpg" alt="" class="w-full h-[360px]">
+
         </div>
 
-        <div class="px-4 xl:px-16" id="main_courses">
+        <div class="px-4 xl:px-12" id="main_courses">
             <MiddleHeader header="Courses" class="my-7 border-b" />
-            <div v-for="(mainCourse, index) in mainCourses" :key="`main_course_${index}`" @click="showId"
-                class="w-full mb-4 pt-2" :ref="`main_course_${index}`">
-                <!-- <h4 :id="`main_course_${mainCourse.id}`"
-                    class="border-y border-gray-300 py-2 px-2 lg:px-8 text-2xl font-bold mb-8 border">
-                    <span>{{ (index + 1) + '. ' + mainCourse.name }}</span> Course
-                </h4> -->
+            <div v-for="(mainCourse, index) in mainCourses" :key="`main_course_${index}`" :id="`main_course_${index + 1}`"
+                @click="showId" class="w-full mb-4 pt-2 relative" :ref="`main_course_${index}`">
+                <div class="px-2 py-1 flex items-center justify-between mb-2 rounded" :class="mainCourse.bgColor">
+                    <h3 class="text-2xl font-semibold flex items-center text-white py-1">
+                        {{ (index + 1) + '. ' + mainCourse.name }}
+                    </h3>
+                    <div class="flex items-center gap-2 text-white border rounded-md py-1 px-3 my-1">
+                        <p class="font-medium">Courses</p>
+                        <p class="w-6 h-6 text-sm font-medium flex items-center justify-center rounded-full border">
+                            {{ mainCourse.courses.length }}</p>
+                    </div>
+                </div>
 
-                <h3 :id="`main_course_${mainCourse.id}`"
-                    class="w-full relative shit border-black leading-[0.1em] font-medium mt-2 mb-6 text-center text-xl md:text-3xl -z-20"
-                    :class="mainCourse.textColor">
-                    <span class="px-2 bg-gray-50 z-[-15]">
-                        <span class=" relative px-2  bg-gray-50">{{ mainCourse.name }}</span>
-                    </span>
-                </h3>
-                <div>
+                <div :id="`gridHeight_${index}`">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full gap-6">
-                        <div v-for="(course, index) in mainCourse.courses" :key="course.name"
-                            :id="`${mainCourse.name}_${index}`" :style="`transition-delay: ${70 * index}ms `"
+                        <div v-for="(course, ind) in mainCourse.courses" :key="course.name"
+                            :id="`${mainCourse.name}_${ind}`" :style="`transition-delay: ${70 * ind}ms `"
                             class="w-full mb-4 block col-span-1 rounded-md overflow-hidden shadow-lg opacity-0 transition duration-[400ms]">
                             <div class="relative">
-                                <img :src="mainCourse.url" alt=""
-                                    class="w-full h-[240px] object-contain bg-gradient-to-tr from-orange-400 to-yellow-200 mb-2">
+                                <router-link
+                                    :to="{ name: 'CourseView', params: {slug: courseSlug(mainCourse.name, course.name)}}" @click="courseToLocal(course, mainCourse.url)">
+                                    <img :src="mainCourse.url" alt=""
+                                        class="w-full h-[240px] bg-gradient-to-tr from-orange-400 to-yellow-200 mb-2"
+                                        :class="[index === mainCourses.length - 1 ? 'object-cover object-left' : 'object-contain']">
+                                </router-link>
                                 <p class="bg-gray-900 text-white absolute bottom-0 right-0 px-2 py-1 z-20">{{ course.name }}
                                 </p>
                             </div>
-                            <div class="p-4  bg-white transition" :id="`test_${index}`">
-                                <h1 class="text-xl font-bold pb-2 border-b border-gray-300">{{ course.name }}</h1>
+                            <div class="px-4 pb-4 bg-white transition">
+                                <h1 :id="`test_${index}_${ind}`"
+                                    class="flex items-center lg:h-[65px] text-xl font-bold border-b border-gray-300">
+                                    {{ course.name }}</h1>
                                 <p class="mb-2 pt-2 pb-4 w-full md:max-h-[150px] md:overflow-y-scroll text-ellipsis transition"
                                     v-html="course.about"></p>
                                 <p
@@ -76,13 +82,25 @@ import Copyright from '../components/Copyright.vue';
 import MiddleHeader from '../components/MiddleHeader.vue';
 import { ref, onMounted } from 'vue';
 
+function courseSlug(mainCourse, sideCourse){
+    let main = mainCourse.toLowerCase().replaceAll(' ', '-')
+    let side = sideCourse.toLowerCase().replaceAll(' ', '-')
+    return `${main}_${side}`
+}
+
+function courseToLocal(course, url){
+    let item = {url, ...course}
+    localStorage.setItem('course', JSON.stringify(item))
+}
 
 onMounted(() => {
     const imgs = document.querySelectorAll('img')
     imgs.forEach(img => {
         img.setAttribute('loading', 'lazy')
     })
-    const allDivs = ['AutoCAD_0', 'AutoCAD_1', 'AutoCAD_2', 'AutoCAD_3', 'AutoCAD_4', 'Revit_0', 'Revit_1', 'SketchUp_0', 'SketchUp_1', 'Graphic Design_0', 'Graphic Design_1', 'Computer Basic and Accounting_0', 'Computer Basic and Accounting_1']
+
+    const allDivs = ['AutoCAD_0', 'AutoCAD_1', 'AutoCAD_2', 'AutoCAD_3', 'AutoCAD_4', 'Revit_0', 'Revit_1', 'SketchUp_0', 'SketchUp_1', 'Graphic Design_0', 'Graphic Design_1', 'Estimate and Computer Basic_0', 'Estimate and Computer Basic_1']
+
     allDivs.forEach(d => {
 
         let autoCadDiv = document.getElementById(d)
@@ -115,14 +133,16 @@ const mainCourses = [
         id: 1,
         name: 'AutoCAD',
         courses: [
-            { name: "Intermediate Course", about: "AutoCAD ကို အခြေခံမှစပြီး လေ့လာလိုသူများအတွက် AutoCAD 2D, Isometric & 3D Modeling တွေအထိ Building Exercise များဖြင့် လေ့လာသင်ကြားနိုင်သော Basic Course တစ်ခုဖြစ်ပါတယ်", fee: '120000' },
-            { name: "Advanced Drafting Course", about: "AutoCAD Basic အခြေခံရှိပြီး လုပ်ငန်းခွင်တွင် CAD drafter တစ်ဦးအနေဖြင့် လုပ်ကိုင်လိုသူများအတွက် ရည်ရွယ်သင်ကြားပေးသော AutoCAD Advanced Course ဖြစ်ပါတယ် \/n Archi Building Project များကို Floor Plan Drawing မှစ Elevations, Sections & Details Drawing များအထိ Project တစ်ခုလုံးစာ Print ထုတ်သည်အထိ ကျွမ်းကျင်တတ်မြောက်အောင် လေ့ကျင့်သင်ကြားပေးမှာဖြစ်ပါတယ်", fee: '120000' },
-            { name: "Structural Drawing Course(Civil Specialized)", about: "AutoCAD အခြေခံတတ်မြောက်ထားသူများအတွက် sTRUCTURAL dRAWING များကို လုပ်ငန်းခွင်တွင် ရေးဆွဲနိုင်အောင် သင်ကြားပေးသော Civil Drawing Course တစ်ခုဖြစ်ပါတယ် <br> R.C Building နှင့် Steel Structure Building Project များကို Drawing, Rebar Drawing, Connection & Detail Drawing များအထိ အသေးစိတ်ရေးဆွဲနိုင်အောင့် လေ့ကျင့်သင်ကြားပေးသော Civil Course ဖြစ်ပါတယ်", fee: '120000' },
+            { name: "Intermediate Course", about: "AutoCAD ကို အခြေခံမှစပြီး လေ့လာလိုသူများအတွက် AutoCAD 2D, Isometric & 3D Modeling တွေအထိ Building Exercise များဖြင့် လေ့လာသင်ကြားနိုင်သော Basic Course တစ်ခုဖြစ်ပါတယ်", fee: '120000', duration: {start: '28.5.2023', end: '1.7.2023', openDate: ['Mon', 'Wed', 'Sat']} },
+            { name: "Advanced Drafting Course", about: "AutoCAD Basic အခြေခံရှိပြီး လုပ်ငန်းခွင်တွင် CAD drafter တစ်ဦးအနေဖြင့် လုပ်ကိုင်လိုသူများအတွက် ရည်ရွယ်သင်ကြားပေးသော AutoCAD Advanced Course ဖြစ်ပါတယ်<br> Archi Building Project များကို Floor Plan Drawing မှစ Elevations, Sections & Details Drawing များအထိ Project တစ်ခုလုံးစာ Print ထုတ်သည်အထိ ကျွမ်းကျင်တတ်မြောက်အောင် လေ့ကျင့်သင်ကြားပေးမှာဖြစ်ပါတယ်", fee: '120000', duration: {start: '28.5.2023', end: '1.7.2023', openDate: ['Mon', 'Wed', 'Sat']} },
+            { name: "Structural Drawing Course(Civil Specialized)", about: "AutoCAD အခြေခံတတ်မြောက်ထားသူများအတွက် Structural Drawing များကို လုပ်ငန်းခွင်တွင် ရေးဆွဲနိုင်အောင် သင်ကြားပေးသော Civil Drawing Course တစ်ခုဖြစ်ပါတယ် <br> R.C Building နှင့် Steel Structure Building Project များကို Drawing, Rebar Drawing, Connection & Detail Drawing များအထိ အသေးစိတ်ရေးဆွဲနိုင်အောင့် လေ့ကျင့်သင်ကြားပေးသော Civil Course ဖြစ်ပါတယ်", fee: '120000' },
             { name: "Electrical Drafting Course", about: "လုပ်ငန်းခွင်တွင် Electrical Drawing များ၊ Diagram များ၊ Electrical Service Drawing များဖန်တီးရေးဆွဲနိုင်ရန် Electrical သဘောတရားများကို အခြေခံမှစ သင်ကြားပေးသော Electrical Drafting Course တစ်ခုဖြစ်ပါတယ်<br> AutoCAD 2D အခြေခံမှစ သင်ကြားပေးမှာဖြစ်တာကြောင့် AutoCAD အခြေခံမရှိသေးသော သူများလည်းတက်ရောက်နိုင်ပါတယ်", fee: '120000' },
             { name: "MEP Drafting Course", about: "လုပ်ငန်းခွင်တွင် MEP Service Drawing များရေးဆွဲရန် လိုအပ်သူများအတွက် MEP အခြေခံမှစ Drawing များ Reference Project များဖြင့် လေ့ကျင့်သင်ကြားပေးသော MEP Drafting Course တစ်ခုဖြစ်ပါတယ်<br>AutoCAD 2D အခြေခံမှစသင်ကြားပေးမှာ ဖြစ်တာကြောင့် AutoCAD အခြေခံမရှိသေးသောသူများလည်း တက်ရောက်နိုင်ပါတယ်", fee: '120000' },
         ],
         url: '../images/logos/autocad.png',
-        textColor: 'text-red-500'
+        textColor: 'text-red-500',
+        bgColor: 'bg-red-500',
+
     },
     {
         id: 3,
@@ -132,7 +152,8 @@ const mainCourses = [
             { name: "MEP Modeling Course", about: "ပြည်တွင်း/ပြည်ပ MEP လုပ်ငန်းခွင်များတွင် (MEP) BIM Modeler ဖြင့် လုပ်ကိုင်လိုသူများတက်ရောက်သင့်သော Revit MEP Modeling Course ဖြစ်ပါတယ်<br>Archi Modeling အခြေခံကိုပါ ထည့်သွင်းသင်ကြားပေးမှာမို့ Revit ကိုလုံးဝအသုံးမပြုတတ်သေးသောသူများလည်း တက်ရောက်လေ့လာနိင်သော သင်တန်းဖြစ်ပါတယ်", fee: '120000' },
         ],
         url: '../images/logos/revit.png',
-        textColor: 'text-blue-500'
+        textColor: 'text-blue-500',
+        bgColor: 'bg-blue-500'
     },
     {
         id: 4,
@@ -142,7 +163,8 @@ const mainCourses = [
             { name: "Advanced Course", about: "SketchUp Modeling အခြေခံတတ်မြောက်ပြီးသူများ Advanced Rendering အထိ လေ့လာနိုင်အောင် Rendering နှင့် Visualization ပိုင်းများ အသေးစိတ်သင်ကြားပေးသော Course ဖြစ်ပါတယ်<br> Modeling, Decoration & Rendering ပိုင်း စိတ်ဝင်စားရေးဆွဲလိုသူများ SketchUp Advanced Level ကို တက်ရောက်နိုင်ပါတယ်", fee: '120000' },
         ],
         url: '../images/logos/sketchup.png',
-        textColor: 'text-red-600'
+        textColor: 'text-red-600',
+        bgColor: 'bg-red-600'
     },
     {
         id: 2,
@@ -152,16 +174,19 @@ const mainCourses = [
             { name: "Poster and Billboard Design", about: "in this course, you will learn about the basic structure of architect, structure and so on...", fee: '120000' },
         ],
         url: '../images/logos/graphic.png',
-        textColor: 'text-blue-800'
+        textColor: 'text-blue-800',
+        bgColor: 'bg-blue-800',
     },
     {
         id: 5,
-        name: 'Computer Basic and Accounting',
+        name: 'Estimate and Computer Basic',
         courses: [
             { name: 'Civil Estimate(QS) Course', about: 'လုပ်ငန်းခွင်တွင် Building Quantity Survye(QS)ဖြင့် လုပ်ကိုင်လိုသူများအတွက် Civil Estimate အပိုင်းသီးသန့်သင်ကြားပေးသော သင်တန်းဖြစ်ပါတယ်။ Excel အခြေခံမရှိသူများအတွက် Excel အခြေခံကစကျွမ်းကျင်တတ်မြောက်လာအောင် သင်ကြားပေးမှာဖြစ်ပါတယ်', fee: '80000' },
             { name: 'Computer Basic Course', about: 'Computer ကို အခြေခံမှစ Microsoft Word, Excel, PowerPoint များအထိကျွမ်းကျင်တတ်မြောက်စွာ လေ့လာအသုံးပြုရန်လိုသူများအတွက် တက်ရောက်နိုင်သော Computer Basic(Office) သင်တန်းတစ်ခုဖြစ်ပါတယ်', fee: '80000' }
         ],
-        url: '../images/logos/graphic.png'
+        url: '../images/microsoft-excel-skills.jpeg',
+        textColor: 'text-gray-800',
+        bgColor: 'bg-gray-800',
     }
 ]
 
@@ -183,7 +208,7 @@ function showId(event) {
     z-index: -5;
 }
 
-.nshit::before{
+.nshit::before {
     content: '';
     position: absolute;
     top: -3px;
@@ -192,9 +217,10 @@ function showId(event) {
     right: 70%;
     background: red;
     z-index: -5;
-    
+
 }
-.nshit::after{
+
+.nshit::after {
     content: '';
     position: absolute;
     bottom: -3px;
@@ -203,7 +229,12 @@ function showId(event) {
     left: 70%;
     background: red;
     z-index: -10;
-    
+
+}
+
+.write-mode {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg)
 }
 
 @media (min-width: 768px) {

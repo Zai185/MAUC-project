@@ -3,7 +3,7 @@
         <Carousel :slides="slides" image-height="h-[440px]" :texts="texts"
             text-pos="text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         <div class="hidden md:block absolute right-0 top-0 text-white w-[240px]">
-            <div class="flex border px-3 py-1 w-full justify-between bg-gray-900 hover:bg-black cursor-pointer"
+            <div class="flex justify-between w-full px-3 py-1 bg-gray-900 border cursor-pointer hover:bg-black"
                 @click="dropdownOpen = !dropdownOpen">
                 <p class="font-semibold">Main Courses</p>
                 <p class="transition duration-300" :class="[dropdownOpen ? 'rotate-90' : '-rotate-90']">&lt;</p>
@@ -11,7 +11,7 @@
             <div class="overflow-hidden">
                 <router-link v-for="(course, index) in courses" :key="course.name" :to="{ name: 'Courses' }"
                     :name="`main_course_${course.id}`" @click="scrollView"
-                    class="border block bg-gray-700 hover:bg-gray-800 hover:font-medium cursor-pointer py-1 px-3 transition"
+                    class="block px-3 py-1 transition bg-gray-700 border cursor-pointer hover:bg-gray-800 hover:font-medium"
                     :class="[[dropdownOpen ? 'translate-x-full animate-drop-toggle' : 'animate-drop-toggle-re'], course.hover]"
                     :style="[dropdownOpen ? `animation-delay: ${100 * (index + 1)}ms` : `animation-delay: ${100 * (4 - (index + 1))}ms`]">{{
                         course.name }}</router-link>
@@ -20,43 +20,44 @@
     </div>
 
     <!-- //! about -->
-    <div class="my-7 border-t border-gray-200">
+    <div class="border-t border-gray-200 my-7">
         <MiddleHeader header="About us" subheader="about our training center" class="mb-12" />
-        <div class="w-full px-8 sm:px-24 flex flex-col lg:flex-row">
-            <div class="w-full lg:w-1/2 px-8 py-12 lg:py-8 bg-white shadow flex flex-col justify-around order-2 lg:order-1">
+        <div class="flex flex-col w-full px-8 sm:px-24 lg:flex-row">
+            <div class="flex flex-col justify-around order-2 w-full px-8 py-12 bg-white shadow lg:w-1/2 lg:py-8 lg:order-1">
                 <div class="text-center lg:text-left">
-                    <h1 class="text-4xl sm:text-4xl font-bold lg:block mb-8">About Our Training Center</h1>
-                    <p class="text-lg text-justify mb-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur
+                    <h1 class="mb-8 text-4xl font-bold sm:text-4xl lg:block">About Our Training Center</h1>
+                    <p class="mb-2 text-lg text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur
                         quo asperiores
                         quos, obcaecati sequi dignissimos mollitia deleniti perferendis voluptates temporibus maxime,
                         maiores exercitationem ipsa.</p>
                 </div>
                 <div>
-                    <router-link :to="{ name: 'About' }" class="text-red-700 text-xl font-medium hover:underline"> See More
+                    <router-link :to="{ name: 'About' }" class="text-xl font-medium text-red-700 hover:underline"> See More
                         About us
                         -></router-link>
                 </div>
             </div>
-            <img src="../images/about-one.jpg" alt="" class="w-full lg:w-1/2 h-[370px] object-cover">
+            <img src="../images/about-one.jpg" alt="building about us trainers "
+                class="w-full lg:w-1/2 h-[370px] object-cover">
         </div>
     </div>
 
     <!-- //! Course -->
 
-    <div class="w-full px-4 md:px-8 xl:px-24 py-7 border border-gray-200">
+    <div class="w-full px-4 border border-gray-200 md:px-8 xl:px-24 py-7">
         <MiddleHeader header="Courses" subheader="courses we offer" class="mb-12" />
         <div class="grid grid-cols-6 grid-rows-7 md:h-[800px] lg:h-[600px] gap-8">
             <div v-for="(course, index) in courses" :key="`course_${index}`"
-                class="w-full flex bg-white shadow-lg rounded-lg overflow-hidden" :class="course.span">
+                class="flex w-full overflow-hidden bg-white rounded-lg shadow-lg" :class="course.span">
                 <div class="w-full h-[200px] md:h-full overflow-hidden relative">
                     <img :src="course.url" :alt="course.url"
-                        class="w-full h-full object-contain p-4 bg-gradient-to-tr from-orange-400 to-yellow-200">
-                    <p class="bg-gray-900 text-white absolute bottom-0 right-0 px-4 py-1 z-20">{{ course.name }}</p>
+                        class="object-contain w-full h-full p-4 bg-gradient-to-tr from-orange-400 to-yellow-200">
+                    <p class="absolute bottom-0 right-0 z-20 px-4 py-1 text-white bg-gray-900">{{ course.name }}</p>
                 </div>
-                <div class="w-full md:h-full justify-between py-4 px-2 lg:p-4 flex flex-col ">
+                <div class="flex flex-col justify-between w-full px-2 py-4 md:h-full lg:p-4 ">
                     <div>
-                        <h3 class="text-2xl font-medium mb-4 px-2">{{ course.name }} Course</h3>
-                        <ul class="list-disc pl-8">
+                        <h3 class="px-2 mb-4 text-2xl font-medium">{{ course.name }} Course</h3>
+                        <ul class="pl-8 list-disc">
                             <li v-for="(outline, ind) in course.courseOutline" :key="`outline_${ind}_of${index}`"
                                 class="pb-2 capitalize">
                                 {{ outline }}
@@ -64,7 +65,7 @@
                         </ul>
                     </div>
                     <button
-                        class="self-end py-1 px-3 text-sm border border-red-500 text-right text-red-500 font-medium hover:text-white hover:bg-red-500 cursor-pointer transition ">
+                        class="self-end px-3 py-1 text-sm font-medium text-right text-red-500 transition border border-red-500 cursor-pointer hover:text-white hover:bg-red-500 ">
                         <router-link :to="{ name: 'Courses' }" :name="`main_course_${course.id}`" @click="scrollView">{{
                             `See
                             about ${course.name}` }}</router-link>
@@ -77,35 +78,35 @@
     <!-- //! Service  -->
     <div class="px-4 lg:px-16 py-7">
         <MiddleHeader header="Services" subheader="services we provide" class="mb-12" />
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-8">
+        <div class="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             <div v-for="(project, index) in projects" :key="project.name"
-                class="w-full mb-4 bg-white block col-span-1 rounded-md overflow-hidden shadow-lg"
+                class="block w-full col-span-1 mb-4 overflow-hidden bg-white rounded-md shadow-lg"
                 :class="[index === 0 ? 'md:flex lg:block gap-8 md:col-span-2 lg:col-span-1' : '']">
-                <img src="../images/building.jpg" alt="" class="w-full h-[240px] object-cover mb-2">
+                <img src="../images/building.jpg" alt="building" class="w-full h-[240px] object-cover mb-2">
                 <div class="p-4">
-                    <h1 class="text-xl font-bold mb-2 text-justify">{{ project.name }}</h1>
+                    <h1 class="mb-2 text-xl font-bold text-justify">{{ project.name }}</h1>
                     <p>{{ project.about }}</p>
                     <ul class="list-disc px-7">
-                        <li class="text-md font-medium" v-for="outline in project.outlines">{{ outline }}</li>
+                        <li class="font-medium text-md" v-for="outline in project.outlines">{{ outline }}</li>
                     </ul>
                 </div>
             </div>
         </div>
         <router-link :to="{ name: 'Services' }"
-            class="block text-center bg-gray-800 text-white capitalize font-medium py-2 hover:bg-gray-700">See about our
+            class="block py-2 font-medium text-center text-white capitalize bg-gray-800 hover:bg-gray-700">See about our
             service and project history =></router-link>
     </div>
 
     <!-- //! location -->
-    <div class="mb-4 px-4 lg:px-8 xl:px-16">
+    <div class="px-4 mb-4 lg:px-8 xl:px-16">
         <MiddleHeader header="Locations" subheader="places you can find us" class="mb-7" />
-        <div class="flex items-center flex-wrap shadow xlg:gap-0">
-            <iframe v-if="locationPlace == 'Hledan'"
+        <div class="flex flex-wrap items-center shadow xlg:gap-0">
+            <iframe v-if="locationPlace == 'Hledan'" title="location hledan"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30551.615722316867!2d96.09189387431637!3d16.828738900000026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c195ffe79c7c81%3A0xf24ca2c87fb023b2!2sMAUC%20Training%20Center!5e0!3m2!1sen!2smm!4v1683799330463!5m2!1sen!2smm"
                 class="w-full xlg:w-1/4 h-[370px] order-3 xlg:order-1" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
-            <iframe v-else
+            <iframe v-else title="location north dagon"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3818.126436449532!2d96.1869829749224!3d16.869638883931945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1ed467f42fbd9%3A0xd2dad9871b852f06!2sMAUC%20Training%20Center%20(Tamwe)!5e0!3m2!1sen!2smm!4v1683826584094!5m2!1sen!2smm"
                 class="w-full xlg:w-1/4 h-[370px] order-3 xlg:order-1" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
@@ -113,18 +114,18 @@
 
             <div
                 class="w-full sm:w-2/3 xlg:w-1/2 h-[370px] bg-gray-800 text-white relative overflow-hidden order-2 sm:order-1 xlg:order-2">
-                <div class="flex text-center text-lg font-medium border-b">
-                    <button class="w-1/2 py-2 cursor-pointer border-r" @click="locationPlace = 'Hledan'"
+                <div class="flex text-lg font-medium text-center border-b">
+                    <button class="w-1/2 py-2 border-r cursor-pointer" @click="locationPlace = 'Hledan'"
                         :class="[locationPlace == 'Hledan' ? 'bg-gray-600' : '']">Hledan</button>
                     <button class="w-1/2 py-2 cursor-pointer" @click="locationPlace = 'North Dagon'"
                         :class="[locationPlace == 'North Dagon' ? 'bg-gray-600' : '']">North Dagon</button>
                 </div>
-                <div v-for="(location, index) in locations" :key="`location_${index}`" class=" p-8 absolute">
+                <div v-for="(location, index) in locations" :key="`location_${index}`" class="absolute p-8 ">
                     <transition name="slide-right">
                         <div v-show="locationPlace === location.name">
-                            <h3 class="text-4xl font-bold mb-4">{{ location.name }}</h3>
+                            <h3 class="mb-4 text-4xl font-bold">{{ location.name }}</h3>
                             <div v-for="(detail, ind) in location.details" :key="`location_detail_${ind}`"
-                                class="flex gap-4 items-center mb-7">
+                                class="flex items-center gap-4 mb-7">
                                 <div class="w-8" v-html="detail.icon"></div>
                                 <p v-html="detail.about"></p>
                             </div>
@@ -132,10 +133,10 @@
                     </transition>
                 </div>
             </div>
-
-            <img v-if="locationPlace == 'Hledan'" src="../images/location-hledan.jpg" alt=""
+            <img v-if="locationPlace == 'Hledan'" src="../images/location-hledan.jpg" alt="location heldan yangon"
                 class="w-full sm:w-1/3 xlg:w-1/4 h-[370px] object-cover order-1 sm:order-2 xlg:order-3">
-            <img v-if="locationPlace == 'North Dagon'" src="../images/location-north-dagon.jpg" alt=""
+            <img v-if="locationPlace == 'North Dagon'" src="../images/location-north-dagon.jpg"
+                alt="location north dagon yangon"
                 class="w-full sm:w-1/3 xlg:w-1/4 h-[370px] object-cover order-1 sm:order-2 xlg:order-3">
         </div>
     </div>
@@ -160,7 +161,6 @@ onMounted(() => {
     imgs.forEach(img => {
         img.setAttribute('loading', 'lazy')
     })
-    console.log(imgs)
 })
 
 const slides = [
@@ -176,10 +176,10 @@ const texts = [
 ]
 
 const courses = [
-    { id: 1, name: 'AutoCAD', courseOutline: ['basic course', 'basic to advanced course', 'drafting course', 'M&E drafting course', 'Electrical Drafting Course'], span: 'flex-col md:flex-row col-span-6 lg:col-span-4 row-span-3 lg:row-span-4', url: '../images/logos/autocad.png', hover: 'hover:bg-red-600' },
-    { id: 2, name: 'Graphic Design', courseOutline: ['Logo Design', 'Billboard Design'], span: 'col-span-6 md:col-span-2 flex-col md:row-span-4 lg:row-span-4', url: '../images/logos/graphic.png', hover: 'hover:bg-blue-700' },
-    { id: 3, name: 'Revit', courseOutline: ['Architecture', 'Structure', 'M&E'], span: 'flex-col md:flex-row col-span-6 md:col-span-4 lg:col-span-3 md:row-span-2 lg:row-span-3', url: '../images/logos/revit.png', hover: 'hover:bg-blue-400' },
-    { id: 4, name: 'Sketchup', courseOutline: ['basic course', 'intermediate course', 'advanced course'], span: 'flex-col md:flex-row col-span-6 md:col-span-4 lg:col-span-3 md:row-span-2 lg:row-span-3', url: '../images/logos/sketchup.png', hover: 'hover:bg-orange-500' },
+    { id: 1, name: 'AutoCAD', courseOutline: ['Intermediate Course', 'Advanced Drafting Course', 'Structural Drawing Course(Civil Specilized)', 'Electrical Drafting Course', 'MEP Drafting Course'], span: 'flex-col md:flex-row col-span-6 lg:col-span-4 row-span-3 lg:row-span-4', url: '../images/logos/autocad.png', hover: 'hover:bg-red-600' },
+    { id: 4, name: 'Graphic Design', courseOutline: ['Logo Design', 'Billboard Design'], span: 'col-span-6 md:col-span-2 flex-col md:row-span-4 lg:row-span-4', url: '../images/logos/graphic.png', hover: 'shit-blue' },
+    { id: 2, name: 'Revit', courseOutline: ['Modeling Course(Archi & Structure', 'MEP Modeling Course'], span: 'flex-col md:flex-row col-span-6 md:col-span-4 lg:col-span-3 md:row-span-2 lg:row-span-3', url: '../images/logos/revit.png', hover: 'shit-cyan' },
+    { id: 3, name: 'Sketchup', courseOutline: ['Basic Course', 'Advanced Course'], span: 'flex-col md:flex-row col-span-6 md:col-span-4 lg:col-span-3 md:row-span-2 lg:row-span-3', url: '../images/logos/sketchup.png', hover: 'hover:bg-orange-500' },
 ]
 
 const projects = [
@@ -268,5 +268,13 @@ function scrollView(event) {
 
 .slide-right-leave-to {
     transform: translateX(120%)
+}
+
+.shit-blue:hover {
+    background: #228;
+}
+
+.shit-cyan:hover {
+    background: rgb(15, 144, 209);
 }
 </style>

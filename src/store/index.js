@@ -2,7 +2,7 @@ import {createStore} from 'vuex'
 
 const store = createStore({
     state: {
-        loading: false
+        currentCourse: {}
     },
     actions: {},
     mutations: {}

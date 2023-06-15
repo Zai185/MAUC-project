@@ -1,43 +1,35 @@
 <template>
     <div
-        class="relative px-2 md:px-8 xl:px-12 py-2 md:py-12 mx-2 sm:mx-12 border border-transparent shadow-lg hover:shadow-black transition duration-300 my-8 overflow-hidden">
+        class="relative px-2 py-2 mx-2 my-8 overflow-hidden transition duration-300 border border-transparent shadow-lg md:px-8 xl:px-12 md:py-12 sm:mx-12 hover:shadow-black">
 
         <!-- <div
             class="-z-10 w-2/3 h-full bg-gradient-to-br from-red-700  to-yellow-200 absolute right-[-15%] top-0 skew-x-[30deg]">
         </div> -->
-        <div class="w-full flex flex-col-reverse md:flex-row justify-between items-center mx-auto">
-            <div class=" w-full md:w-1/2 px-8 md:px-0 flex flex-col justify-center gap-5 text-center md:text-left">
-                <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold">Something to write for the hero section</h2>
+        <div class="flex flex-col-reverse items-center justify-between w-full mx-auto md:flex-row">
+            <div class="flex flex-col justify-center w-full gap-5 px-8 text-center  md:w-1/2 md:px-0 md:text-left">
+                <h2 class="text-3xl font-bold lg:text-4xl xl:text-5xl">Something to write for the hero section</h2>
                 <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum doloremque
                     temporibus earum voluptates
                     dolor saepe repellendus quasi omnis cumque libero.</p>
                 <div>
-                    <button class="py-1 px-4 mr-4 bg-red-600 text-white shadow-md  transition duration-300
-                        hover:shadow-black hover:bg-red-500 hover:scale-x-100">
+                    <button class="px-4 py-1 mr-4 text-white transition duration-300 bg-red-600 shadow-md hover:shadow-black hover:bg-red-500 hover:scale-x-100">
                         <a href="#footer">Course</a>
                     </button>
-                    <button class="py-1 px-4 mr-4 bg-red-600 text-white shadow-md  transition duration-300
-                        hover:shadow-black hover:bg-red-500">
+                    <button class="px-4 py-1 mr-4 text-white transition duration-300 bg-red-600 shadow-md hover:shadow-black hover:bg-red-500">
                         Service</button>
                 </div>
                 <!-- //^ social media icon  -->
-                <div class="flex justify-center items-center gap-2 md:justify-start">
+                <div class="flex items-center justify-center gap-2 md:justify-start">
                     <p class="text-sm font-medium">Find us on -</p>
-                    <a v-for="icon in socialIcons" :key="icon.name" v-html="icon.svg" class="cursor-pointer transition" :class="icon.color">
+                    <a v-for="icon in socialIcons" :key="icon.name" v-html="icon.svg" class="transition cursor-pointer" :class="icon.color">
                     </a>
                 </div>
             </div>
-            <hr class="block sm:hidden bg-black">
-            <div class="w-full md:w-1/2 relative">
+            <hr class="block bg-black sm:hidden">
+            <div class="relative w-full md:w-1/2">
                 <div>
-                    <!-- <img src="../images/mauc.png" alt=""
-                        class="w-40 h-40 absolute top-1/3 left-1/2 -translate-x-1/3 -translate-y-1/2"> -->
                     <div class="flex justify-center">
-                        <!-- <div class="flex flex-col">
-                            <img src="../images/sketch-3.png" alt="" class="w-44 h-44">
-                            <img src="../images/arrow.png" alt="" class="w-24 h-24 rotate-[-15deg] self-end">
-                        </div> -->
-                        <img src="../images/sketch-4.png" alt=""
+                        <img src="../images/sketch-4.png" alt="building sketch"
                             class="object-contain w-96 h-96 md:w-80 md:h-80 lg:w-96 lg:h-96 ">
                     </div>
                 </div>

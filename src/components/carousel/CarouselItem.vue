@@ -1,7 +1,7 @@
 <template>
     <transition :name="direction"  >
-            <div class="absolute left-0 top-0 right-0 bottom-0" v-show="currentSlide === index">
-                <img :src="slide" alt="" class="object-cover w-full h-full">
+            <div class="absolute top-0 bottom-0 left-0 right-0" v-show="currentSlide === index">
+                <img :src="slide" alt="slide" class="object-cover w-full h-full">
             </div>
     </transition>
 
