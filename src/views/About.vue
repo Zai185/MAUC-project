@@ -31,7 +31,7 @@
                 <MiddleHeader header="About Our Training Center" class="py-7" />
                 <div class="flex flex-col w-full lg:flex-row">
                     <img src="../images/building.jpg" alt="building" class="w-full lg:w-1/2 h-[370px] object-cover">
-                    <div class="flex flex-col justify-around w-full px-8 py-12 bg-white shadow lg:w-1/2 lg:py-8">
+                    <div class="flex flex-col justify-around w-full px-8 py-12 bg-white shadow lg:w-1g lg:py-8">
                         <div class="text-center lg:text-left">
                             <h1 class="mb-8 text-4xl font-bold sm:text-4xl lg:block">About Our Training Center</h1>
                             <p class="mb-2 text-lg text-justify">Lorem ipsum dolor sit amet consectetur, adipisicing elit.

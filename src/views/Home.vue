@@ -158,8 +158,10 @@ const dropdownOpen = ref(false)
 onMounted(() => {
     dropdownOpen.value = true
     const imgs = document.querySelectorAll('img')
-    imgs.forEach(img => {
-        img.setAttribute('loading', 'lazy')
+    imgs.forEach((img, index) => {
+        if(index !== 0){
+            img.setAttribute('loading', 'lazy')
+        }
     })
 })
 
