@@ -13,7 +13,8 @@ export default {
                 '3xs': '8px'
             },
             screens: {
-                'xlg': '940px'
+                'xlg': '940px',
+                'xxl' : '1440px'
             },
             keyframes: {
                 'fade': {

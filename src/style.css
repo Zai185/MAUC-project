@@ -1,22 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar&family=Roboto:wght@300;400;500;900&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-*{
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
-    object-fit: cover;
+* {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  object-fit: cover;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 5px;
   background: transparent;
   overflow: auto;
 }
 
-::-webkit-scrollbar-thumb{
-    width: 5px;
-    border-radius: 10px;
-    background-color: red;
+::-webkit-scrollbar-thumb {
+  width: 5px;
+  border-radius: 10px;
+  background-color: red;
 }
